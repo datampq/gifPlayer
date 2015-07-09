@@ -6,6 +6,7 @@
 package player;
 
 import java.io.File;
+import java.util.List;
 
 /**
  *
@@ -27,6 +28,10 @@ public class settings {
     public void reinit(){
         File f = new File(path);
         processFolder(f);
+    }
+    public  settings(List<File> files){
+        this.files=files.toArray(new File[files.size()]);
+         index = new gifIndexer();
     }
 
     public void setPath(String s) {

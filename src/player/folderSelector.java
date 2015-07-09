@@ -5,15 +5,23 @@
  */
 package player;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DropTargetDragEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -64,6 +72,18 @@ public class folderSelector extends JFrame implements Runnable {
         JPanel content = new JPanel();
         content.setBackground(consts.whiteColor);
         content.setPreferredSize(new Dimension(panelW, panelH));
+
+        JPanel pane = new JPanel();
+        pane.setPreferredSize(new Dimension(panelW / 2, panelH));
+        pane.setBackground(consts.redMuchDarkerColor);
+        JLabel dro = new JLabel("Drag Files and Drop here ;)");
+        dro.setForeground(consts.white);
+        dro.setFont(consts.small);
+        pane.add(dro);
+        // Add a drop target to the JPanel
+        TLTHandler target = new TLTHandler(pane, this);
+
+        content.add(pane);
         status = new JLabel(consts.version);
         status.setForeground(consts.redDarkerColor);
         status.setFont(consts.normal);
@@ -97,6 +117,13 @@ public class folderSelector extends JFrame implements Runnable {
 
     private void init(File file) {
         s = new settings(file.getAbsolutePath());
+        inited = true;
+        redrawUI();
+    }
+
+    public void initDrop(List<File> f) {
+
+        s = new settings(f);
         inited = true;
         redrawUI();
     }
