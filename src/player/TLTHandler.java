@@ -56,12 +56,12 @@ public class TLTHandler implements DropTargetListener {
 
     public void dragOver(DropTargetDragEvent dtde) {
 
-        acceptOrRejectDrag(dtde);
+      
     }
 
     public void dropActionChanged(DropTargetDragEvent dtde) {
 
-        acceptOrRejectDrag(dtde);
+      
     }
 
     public void drop(DropTargetDropEvent dtde) {

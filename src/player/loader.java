@@ -42,11 +42,7 @@ public class loader implements Runnable {
             gifs = new gif[numToLoad];
             for (int i = 0; i < gifs.length; i++) {
                 
-                if (s.dublicate(pointer)) {
-                    while (s.dublicate(pointer)) {
-                        pointer--;
-                    }
-                }
+              
                 co.updateProgressTop(i, gifs.length - 1);
                 gifs[i] = new gif(s.getFileAtPointer(pointer), pointer);
                 System.out.println("-----------------------------"+i+"----"+pointer);

@@ -122,10 +122,11 @@ public class folderSelector extends JFrame implements Runnable {
     }
 
     public void initDrop(List<File> f) {
-
+        System.out.println("called");
         s = new settings(f);
         inited = true;
         redrawUI();
+        setLoading();
     }
 
     public void setShuffle() {

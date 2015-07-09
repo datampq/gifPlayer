@@ -17,7 +17,7 @@ public class consts {
     public static int fps = 11;
     public static boolean shuffle = false;
     public static boolean skip=false;
-    public static int buffer=10;
+    public static int buffer=2;
     public static boolean repeat = false;
     public static Color whiteColor = Color.decode("0xffebee");
     public static Color redColor = Color.decode("0xf44336");

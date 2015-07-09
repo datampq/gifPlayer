@@ -143,6 +143,7 @@ public class imagePlayer extends JFrame implements Runnable {
             if (l.isDone()) {
 
                 pointer = l.returnPointer();
+             
                 System.out.println("Updating pointer at main Thread:" + pointer);
                 c.updatePointer(pointer, sets.getNumFiles());
                 threadDone = true;
@@ -155,14 +156,16 @@ public class imagePlayer extends JFrame implements Runnable {
 
     private void sGif() {
         //deal with shuffle
-        for (int i = 0; i < gifs.length; i++) {
+        pointer = sets.getNumFiles()-1 ;
+        System.out.println(pointer);
+        for (int i = 0; i < consts.buffer; i++) {
             gifs[i] = new gif(sets.getFileAtPointer(pointer), pointer);
             if (pointer < 1) {
-                pointer = sets.getNumFiles() - 1;
+                pointer = sets.getNumFiles()-1 ;
             } else {
                 pointer--;
             }
-            System.out.println("Pointer=" + pointer);
+            System.out.println("Pointer=aa" + pointer);
         }
         select.redrawUI();
 
