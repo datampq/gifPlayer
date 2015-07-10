@@ -5,7 +5,6 @@
  */
 package player;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -20,19 +19,18 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JPanel;
 
 public class TLTHandler implements DropTargetListener {
+
     private final folderSelector f;
 
-    public TLTHandler(JPanel pane,folderSelector f) {
-        this.f=f;
+    public TLTHandler(JPanel pane, folderSelector f) {
+        this.f = f;
         this.pane = pane;
 
-    // Create the DropTarget and register
+        // Create the DropTarget and register
         // it with the JPanel.
         dropTarget = new DropTarget(pane, DnDConstants.ACTION_COPY,
                 this, true, null);
@@ -41,13 +39,13 @@ public class TLTHandler implements DropTargetListener {
     // Implementation of the DropTargetListener interface
     public void dragEnter(DropTargetDragEvent dtde) {
 
-    // Get the type of object being transferred and determine
+        // Get the type of object being transferred and determine
         // whether it is appropriate.
         checkTransferType(dtde);
         System.out.println("We got drag with type=");
         // Accept or reject the drag.
         boolean acceptOrRejectDrag = acceptOrRejectDrag(dtde);
-        
+
     }
 
     public void dragExit(DropTargetEvent dte) {
@@ -56,12 +54,10 @@ public class TLTHandler implements DropTargetListener {
 
     public void dragOver(DropTargetDragEvent dtde) {
 
-      
     }
 
     public void dropActionChanged(DropTargetDragEvent dtde) {
 
-      
     }
 
     public void drop(DropTargetDropEvent dtde) {
@@ -87,33 +83,33 @@ public class TLTHandler implements DropTargetListener {
         }
     }
 
-  // Internal methods start here
+    // Internal methods start here
     protected boolean acceptOrRejectDrag(DropTargetDragEvent dtde) {
         int dropAction = dtde.getDropAction();
         int sourceActions = dtde.getSourceActions();
         boolean acceptedDrag = false;
-List<File> files = null;
-    // Reject if the object being transferred
+        List<File> files = null;
+        // Reject if the object being transferred
         // or the operations available are not acceptable.
         if (!acceptableType
                 || (sourceActions & DnDConstants.ACTION_COPY_OR_MOVE) == 0) {
 
             dtde.rejectDrag();
         } else if ((dropAction & DnDConstants.ACTION_COPY_OR_MOVE) == 0) {
-      // Not offering copy or move - suggest a copy
+            // Not offering copy or move - suggest a copy
 
             dtde.acceptDrag(DnDConstants.ACTION_COPY);
             acceptedDrag = true;
         } else {
-      // Offering an acceptable operation: accept
+            // Offering an acceptable operation: accept
             System.out.println("We got an acceptable drag");
             try {
-                
-               files = (List<File>)dtde.getTransferable().getTransferData(targetFlavor);
+
+                files = (List<File>) dtde.getTransferable().getTransferData(targetFlavor);
             } catch (UnsupportedFlavorException ex) {
-                
+
             } catch (IOException ex) {
-              
+
             }
             dtde.acceptDrag(dropAction);
             acceptedDrag = true;
