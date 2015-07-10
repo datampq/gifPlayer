@@ -13,7 +13,7 @@ import java.awt.Font;
  * @author sn0w
  */
 public class consts {
-    public static String version ="GIF Player v1.2b build 02.06.15";
+    public static String version ="GIF Player v1.2 build 10.07.15";
     public static int fps = 11;
     public static boolean shuffle = false;
     public static boolean skip=false;
