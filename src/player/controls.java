@@ -7,10 +7,13 @@ package player;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -31,9 +34,12 @@ public class controls extends JFrame implements Runnable {
     private Graphics overall;
     private JLabel oProgress;
     private JTextField input;
+    private final folderSelector f;
+    private final settings sets;
 
-    public controls() {
-
+    public controls(folderSelector f, settings s) {
+        sets = s;
+        this.f = f;
         t_name = "controlsThread";
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -63,6 +69,7 @@ public class controls extends JFrame implements Runnable {
         content.add(status(w));
         content.add(progress(w));
         content.add(controlPanel(w));
+        //content.add(playlist());
         return content;
 
     }
@@ -87,6 +94,27 @@ public class controls extends JFrame implements Runnable {
         return content;
     }
 
+    private JPanel playlist() {
+        JPanel content = new JPanel(new GridBagLayout());
+        for (int i = 0; i < sets.getNumFiles(); i++) {
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.weightx = 1;
+            gbc.weighty = 1;
+            JPanel filePanel = new JPanel();
+            filePanel.setBackground(consts.white);
+            File fileAtPointer = sets.getFileAtPointer(i);
+            JLabel l = new JLabel(i + ". " + fileAtPointer.getName());
+            l.setForeground(consts.redMuchDarkerColor);
+            l.setFont(consts.tiny);
+            filePanel.add(l);
+            content.add(filePanel, gbc);
+
+        }
+
+        return content;
+    }
+
     private JPanel status(int w) {
         JPanel content = new JPanel();
         content.setBackground(consts.whiteColor);
@@ -95,7 +123,7 @@ public class controls extends JFrame implements Runnable {
         status.setForeground(consts.redDarkerColor);
         status.setFont(consts.tiny);
         content.add(status);
-    
+
         return content;
     }
 
@@ -108,15 +136,17 @@ public class controls extends JFrame implements Runnable {
         btn b5 = new btn(">|", "next", 70, 40);
         btn b3 = new btn("Repeat", "repeat", 120, 40);
         btn b4 = new btn("Shuffle", "shuffle", 120, 40);
-        input = new JTextField(5);
-        content.add(input);
-         btn b1 = new btn("Go", "go", 120, 40);
-         content.add(b1);
+        btn b0 = new btn("Menu", "menu", 120, 40);
+        //input = new JTextField(5);
+        // content.add(input);
+        //  btn b1 = new btn("Go", "go", 120, 40);
+        //content.add(b1);
         content.add(b);
         content.add(b2);
         content.add(b5);
         content.add(b3);
         content.add(b4);
+        content.add(b0);
         return content;
 
     }
@@ -165,7 +195,8 @@ public class controls extends JFrame implements Runnable {
         oProgress.repaint();
         revalidate();
     }
-    public int getValue(){
+
+    public int getValue() {
         return Integer.parseInt(input.getText());
     }
 
@@ -176,6 +207,7 @@ public class controls extends JFrame implements Runnable {
         private boolean sh = false;
         private imagePlayer player;
         private controls c;
+
         public btn(String label, String action, int w, int h) {
             this.action = action;
             setBackground(consts.redDarkerColor);
@@ -185,17 +217,19 @@ public class controls extends JFrame implements Runnable {
             add(l);
             addMouseListener(this);
         }
- public btn(String label, String action, int w, int h, imagePlayer player, controls c) {
+
+        public btn(String label, String action, int w, int h, imagePlayer player, controls c) {
             this.action = action;
             setBackground(consts.redDarkerColor);
             JLabel l = new JLabel(label);
             l.setForeground(consts.whiteColor);
             l.setFont(consts.small);
             add(l);
-            this.player=player;
-            this.c=c;
+            this.player = player;
+            this.c = c;
             addMouseListener(this);
         }
+
         @Override
         public void mouseClicked(MouseEvent me) {
             if (action.equals("faster")) {
@@ -219,6 +253,9 @@ public class controls extends JFrame implements Runnable {
                     consts.repeat = true;
                     repeat = true;
                 }
+
+            }
+            if (action.equals("menu")) {
 
             }
             if (action.equals("shuffle")) {
