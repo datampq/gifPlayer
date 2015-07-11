@@ -29,7 +29,7 @@ public class gif {
     public gif(File f, int p) {
         source = f;
         filePointer = p;
-        System.out.println("-------->Stating at:"+p);
+        //System.out.println("-------->Stating at:"+p);
 //        try {
 //            
 //            frames = safeRead(source);
@@ -40,7 +40,7 @@ public class gif {
 //        }
 //            //readFrames();
 //        } catch (IOException ex) {
-           readFrames();
+        readFrames();
 //        }
 
     }
@@ -53,7 +53,7 @@ public class gif {
     public int getPointer() {
         // System.out.println("-------->Ending at:"+filePointer);
         return filePointer;
-        
+
     }
 
     public File getSource() {
@@ -81,7 +81,7 @@ public class gif {
             try {
                 int noi = reader.getNumImages(true);
                 numFrames = noi;
-                System.out.println(source + "loaded; frame count: " + noi);
+                //System.out.println(source + "loaded; frame count: " + noi);
                 frames = new BufferedImage[noi];
                 for (int i = 0; i < noi; i++) {
                     try {
@@ -112,19 +112,19 @@ public class gif {
 
         reader.setInput(stream, true, false);
         List<BufferedImage> framesTmp = new ArrayList<>();
-    //read the images 
+        //read the images 
 
         int index = 0;
         while (true) {
             try {
                 framesTmp.add(reader.read(index++));
-              
+
             } catch (IndexOutOfBoundsException e) {
                 break;
             }
         }
         BufferedImage[] toReturn = framesTmp.toArray(new BufferedImage[]{});
-        
+
         //clean up 
         reader.dispose();
         stream.close();
@@ -149,7 +149,7 @@ public class gif {
                         }
                     }
                     if (!easyFix) {
-                       
+
                     }
                 }
                 image.setRGB(i, j, rgb);
