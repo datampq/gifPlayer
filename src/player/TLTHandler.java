@@ -102,7 +102,7 @@ public class TLTHandler implements DropTargetListener {
             acceptedDrag = true;
         } else {
             // Offering an acceptable operation: accept
-            System.out.println("We got an acceptable drag");
+            //System.out.println("We got an acceptable drag");
             try {
 
                 files = (List<File>) dtde.getTransferable().getTransferData(targetFlavor);
@@ -124,7 +124,7 @@ public class TLTHandler implements DropTargetListener {
         DataFlavor[] fl = dtde.getCurrentDataFlavors();
 
         for (int i = 0; i < fl.length; i++) {
-            System.out.println(fl[i].getHumanPresentableName() + "     " + fl[i].getMimeType());
+            //System.out.println(fl[i].getHumanPresentableName() + "     " + fl[i].getMimeType());
             if (fl[i].getHumanPresentableName().equals("application/x-java-file-list")) {
                 targetFlavor = fl[i];
                 acceptableType = true;
