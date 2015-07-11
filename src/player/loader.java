@@ -30,7 +30,7 @@ public class loader implements Runnable {
 
         if (t == null) {
             t = new Thread(this, t_name);
-            System.out.println("Thread: " + t_name + " started!");
+           // System.out.println("Thread: " + t_name + " started!");
             t.start();
         }
     }
@@ -43,9 +43,9 @@ public class loader implements Runnable {
             for (int i = 0; i < gifs.length; i++) {
                 
               
-                co.updateProgressTop(i, gifs.length - 1);
+                //co.updateProgressTop(i, gifs.length - 1);
                 gifs[i] = new gif(s.getFileAtPointer(pointer), pointer);
-                System.out.println("-----------------------------"+i+"----"+pointer);
+               // System.out.println("-----------------------------"+i+"----"+pointer);
                 if (pointer < 1) {
                     pointer = s.getNumFiles() - 1;
                 } else {
@@ -54,14 +54,14 @@ public class loader implements Runnable {
                 //System.out.println("Pointer=" + pointer);
             }
             done = true;
-            System.out.println("Finished loading chunk!");
+           // System.out.println("Finished loading chunk!");
         }
         t=null;
-        System.out.println("Finished loading chunk! Pointer end point="+pointer);
+       // System.out.println("Finished loading chunk! Pointer end point="+pointer);
     }
 
     public int returnPointer() {
-        System.out.println("-----------------------------<<<End of loader");
+       // System.out.println("-----------------------------<<<End of loader");
         return pointer;
         
     }

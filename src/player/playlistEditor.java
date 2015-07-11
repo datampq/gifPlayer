@@ -10,6 +10,7 @@ import java.awt.Dimension;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -63,6 +64,14 @@ public class playlistEditor extends JFrame {
         pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         pane.getVerticalScrollBar().setUnitIncrement(20);
         return pane;
+    }
+    public void clearPanels(){
+        for (JPanel panel : panels) {
+            panel.setBorder(BorderFactory.createEmptyBorder());
+        }
+    }
+    public void clearPanel(int i){
+        panels[i].setBorder(BorderFactory.createEmptyBorder());
     }
 
     private static class MouseListenerImpl implements MouseListener {
