@@ -4,8 +4,11 @@ Java GIF player. Useful for playing a folder containing many (100+) gifs. File s
 
 
 <h2>Update log</h2>
+<h4>Playlist editor update v1.2b</h4>
+ - gif playlist editor added
+ - optimization under progress, more to be done soon
 <h4>Drag and drop support update v1.2</h4>
- - Drag and drop support added. Just drag gif files and click play. Haldned by  TLTHandler.java, minor modifications to  folderSelector.java
+ - Drag and drop support added. Just drag gif files and click play. Handled by  TLTHandler.java, minor modifications to  folderSelector.java
  - Minor optimization changes (buffer set to 2 files)
  - Console class commit (a full console will be available within the next version).
  
