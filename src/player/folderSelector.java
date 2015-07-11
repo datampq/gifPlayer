@@ -5,14 +5,11 @@
  */
 package player;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DropTargetDragEvent;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
 import java.io.File;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -20,8 +17,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 
 /**
  *
@@ -122,7 +117,7 @@ public class folderSelector extends JFrame implements Runnable {
     }
 
     public void initDrop(List<File> f) {
-        System.out.println("called");
+        // System.out.println("called");
         s = new settings(f);
         inited = true;
         redrawUI();
@@ -141,7 +136,7 @@ public class folderSelector extends JFrame implements Runnable {
     }
 
     public void redrawUI() {
-        status.setText("Ready: " + s.getPath() + " Files: " + s.getNumFiles() + " Shuffle:" + consts.shuffle);
+        //status.setText("Ready: " + s.getPath() + " Files: " + s.getNumFiles() + " Shuffle:" + consts.shuffle);
         revalidate();
     }
 
